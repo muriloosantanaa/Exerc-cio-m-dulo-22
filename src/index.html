@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festa de Aniversário - 15 de Setembro</title>
+    <link rel="stylesheet" href="./styles/main.scss">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1 class="hero__title">Festa de Aniversário</h1>
+            <p class="hero__text">
+                A festa começa em <span id="contador"></span>
+            </p>
+            <div class="infos-bar">
+                <ul class="infos-bar__list">
+                    <li class="infos-bar__item">
+                        <b>Local:</b>
+                        Salão de Festas - Vila Natal
+                    </li>
+                    <li class="infos-bar__item">
+                        <b>Data:</b>
+                        15/09/2025 às 20h
+                    </li>
+                </ul>
+                <a href="#" class="button button--primary">
+                    Confirmar Presença
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tema da Festa Section -->
+    <section class="infos-bar infos-bar--theme">
+        <div class="container infos-bar__container" data-aos="fade-right">
+            <h2 class="event__title">O Tema da Festa</h2>
+            <img src="/images/aniversario_logo.png" alt="">
+            <p class="event__description">
+                Prepare-se para uma noite inesquecível com muita música, diversão e surpresas especiais! 🎉
+            </p>
+        </div>
+    </section>
+
+    <!-- Atrações Especiais Section -->
+    <section class="event">
+        <div class="container" data-aos="fade-right">
+            <div class="event__details">
+                <h2 class="event__details__title">Atrações Especiais</h2>
+                <p class="event__details__description">
+                    🎶 DJ ao vivo <br>
+                    🎤 Karaokê <br>
+                    🍰 Bolo e docinhos deliciosos <br>
+                    📸 Cabine de fotos
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="event event--schedule">
+        <div class="container" data-aos="fade-right">
+            <h2 class="event__title">Programação</h2>
+            <ul class="event__schedule">
+                <li class="event__schedule__item"><b>20h00</b> - Recepção e drinks de boas-vindas 🍹</li>
+                <li class="event__schedule__item"><b>21h00</b> - Jantar especial 🍽️</li>
+                <li class="event__schedule__item"><b>22h00</b> - Parabéns e bolo 🎂</li>
+                <li class="event__schedule__item"><b>23h00</b> - Festa e pista de dança! 🕺💃</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="event event--details">
+        <div class="container">
+            <h2 class="event__title">Detalhes Importantes</h2>
+            <p class="event__description">
+                Não se esqueça de trazer sua energia positiva! A festa será incrível, e todos estão convidados para comemorar o meu aniversário com muita alegria e diversão.
+            </p>
+        </div>
+    </section>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./scripts/main.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200,
+            easing: 'ease', 
+            once: true 
+        });
+    </script>
+</body>
+</html>

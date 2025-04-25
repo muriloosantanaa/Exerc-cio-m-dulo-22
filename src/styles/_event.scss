@@ -1,0 +1,68 @@
+@use 'variaveis';
+
+.event {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 20px;
+    background-color:variveis.$dark-color;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px variaveis.$dark-color;
+    gap: 20px;
+
+    &__title, &__description {
+        flex: 1;
+        transition: color 0.3s ease;
+    }
+
+    &__title {
+        font-size: 32px;
+        font-weight: 700;
+        color: variaveis.$dark-color;
+
+        &:hover {
+            color: variaveis.$prymary-color1;
+        }
+    }
+
+    &__description {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #333;
+
+        &:hover {
+            color: variaveis.$primary-color;
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        text-align: center;
+
+        &__title {
+            font-size: 28px;
+        }
+
+        &__description {
+            font-size: 16px;
+        }
+
+        &__image {
+            max-width: 60%; 
+        }
+    }
+
+    @media (max-width: 480px) {
+        &__title {
+            font-size: 24px;
+        }
+
+        &__description {
+            font-size: 14px;
+        }
+
+        &__image {
+            max-width: 50%;
+        }
+    }
+}

@@ -1,66 +1,31 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const buttons = document.querySelectorAll('[data-tab-button]');
-    const questions = document.querySelectorAll('[data-faq-question]');
+AOS.init();
 
-const heroSection =document.querySelector('.hero');
-const alturaHero = heroSection.clientHeight;
+const dataDoEvento = new Date("Sep 15, 2025 19:00:00");
+const timeStampDoEvento = dataDoEvento.getTime();
 
-window.addEventListener('scroll', function(){
-    const posicaoAtual =  window.scrollY;
+const contaAsHoras = setInterval(function () {
+    const agora = new Date();
+    const timeStampAtual = agora.getTime();
 
-    if ( posicaoAtual < alturaHero){
-        ocultarElementoDoHeader()
-    }
-    else{
-        exibirElementoDoHeader();
-    }
-})
+    const distanciaAteOEvento = timeStampDoEvento - timeStampAtual;
 
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener('click', function (botao) {
-            const abaAlvo = botao.target.dataset.tabButton;
-            const aba = document.querySelector(`[data-tab-id="${abaAlvo}"]`);
-            esconderTodasAbas();
-            aba.classList.add('wanted__list--is-active');
-            removeBotaoAtivo();
-            botao.target.classList.add('wanted__tabs__button--is-active');
-        });
+    if (distanciaAteOEvento <= 0) { 
+        clearInterval(contaAsHoras);
+        document.getElementById('contador').innerHTML = 'Evento expirado';
+        return;
     }
 
-    for (let i = 0; i< questions.length; i++) {
-        questions[i].addEventListener('click', abreOuFechaResposta);
-    }
-});
+    const diaEmMs = 1000 * 60 * 60 * 24;
+    const horaEmMs = 1000 * 60 * 60;
+    const minutoEmMs = 1000 * 60;
+    const segundoEmMs = 1000; 
 
-function ocultarElementoDoHeader() {
-    const header = document.querySelector('header');
-    header.classList.add('header--is-hidden');
-}
+    const diasAteOEvento = Math.floor(distanciaAteOEvento / diaEmMs);
+    const horasAteOEvento = Math.floor((distanciaAteOEvento % diaEmMs) / horaEmMs);
+    const minutosAteOEvento = Math.floor((distanciaAteOEvento % horaEmMs) / minutoEmMs);
+    const segundosAteOEvento = Math.floor((distanciaAteOEvento % minutoEmMs) / segundoEmMs);
 
-function exibirElementoDoHeader() {
-    const header = document.querySelector('header');
-    header.classList.remove('header--is-hidden');
-}
+    document.getElementById('contador').innerHTML = 
+        `${diasAteOEvento}d ${horasAteOEvento}h ${minutosAteOEvento}m ${segundosAteOEvento}s`;
 
-function abreOuFechaResposta(elemento){
-    const classe = 'faq__questions__item--is-open';
-    const elementoPai = elemento.target.parentNode;
-
-    elementoPai.classList.toggle(classe);
-}
-
-function removeBotaoAtivo (){
-    const buttons = document.querySelectorAll('[data-tab-button]');
-
-    for (let i = 0; i < buttons.length; i++) {
-    buttons[i].classList.remove('wanted__tabs__button--is-active');
-    }
-}
-
-function esconderTodasAbas() {
-    const tabsContainer = document.querySelectorAll('[data-tab-id]');
-
-    for (let i = 0; i < tabsContainer.length; i++) {
-        tabsContainer[i].classList.remove('wanted__list--is-active');
-    }
-}
+}, 1000);

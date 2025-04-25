@@ -1,0 +1,42 @@
+@use 'variaveis';
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid variaveis.$dark-color; 
+    color: variaveis.$primary-color; 
+    box-sizing: border-box;
+
+    
+    &:hover {
+        transform: scale(1.05);  
+        opacity: 0.8; 
+        background-color: variaveis.$primary-color;
+        color: variaveis.$light-color;
+    }
+
+    &--outline {
+        background-color: transparent;
+        border: 2px solid variaveis.$primary-color;
+        color: variaveis.$primary-color;
+
+    }
+
+    @media (max-width: 768px) {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}

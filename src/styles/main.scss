@@ -1,110 +1,191 @@
-@use'variaveis';
-@use'hero';
-@use'background';
-@use'views';
-@use'wanted';
-@use'games';
-@use'faq';
-@use'footer';
-@use'header';
+@use './variaveis';
 
-*{
-    padding: 0;
+*,
+*::before,
+*::after {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: "Oxygen", sans-serif;
-    list-style: none;
+    font-family: 'Poppins','Roboto', sans-serif;
 }
 
-body{
-    background-color: variaveis.$corPrincipal;
+body {
+    color: variaveis.$dark-color;
+    background-color: variaveis.$light-color; 
+    line-height: 1.6; 
 }
 
-@mixin text ($fontSize: 16px){
-    font-size: $fontSize;
-    line-height: $fontSize + 10px;
-    color: variaveis.$cordeTextoSecundario;
-}
-
-@mixin title ($fontSize: 40px){
-    @include text($fontSize);
-    color: variaveis.$cordeTextoSecundario;
-}
-
-.text--big {
-    @include text(18px);
-
-    @media(max-width: 768px){
-        @include text (15px)
-    }
-}
-
-.text{
-    @include text;
-
-    @media(max-width: 768px){
-        @include text (14px)
-    }
-}
-
-.text--small {
-    @include text(16px);
-
-    @media(max-width: 768px){
-        @include text (11px)
-    }
-}
-
-.title--big{
-    @include title(44px);
-
-    @media(max-width: 768px){
-        @include title (26px)
-    }
-}
-
-.title {
-    @include title;
-
-    @media(max-width: 768px){
-        @include title (24px)
-    }
-}
-
-.title--small{
-    @include title(28px);
-
-    @media(max-width: 768px){
-        @include title (22px)
-    }
-}
-
-.link--text{
-    @include text(18px);
-    color: variaveis.$cordeTextoSecundario
-}
-
-.button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.container {
+    max-width: 960px;
     width: 100%;
-    height: 60px;
-    font-size: 18px;
-    background-color: variaveis.$corBotoes;
-    border: none;
+    margin: 0 auto;
+    padding: 0 16px;
+
+    @media (max-width: 1024px) {
+        max-width: 90%;
+    }
+
+    @media (max-width: 640px) {
+        max-width: 80%;
+    }
+}
+
+.button {
+    display: inline-block;
+    padding: variaveis.$button-padding;
+    font-size: variaveis.$font-size-large;
+    font-weight: bold;
+    text-align: center;
     border-radius: 8px;
     text-decoration: none;
-    padding: 8px 14px;
-    letter-spacing: 1px;
-    border: 1px solid variaveis.$corBotoes;
+    transition: all 0.3s ease-in-out; 
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid variaveis.$primary-color; 
+    color: variaveis.$primary-color;  
 
-    &--dark{
-        background-color: rgba(variaveis.$corBotoes, 0.8);
-        border-color: variaveis.$cordeTextoSecundario;
+    // Efeito hover
+    &:hover {
+        transform: scale(1.05);  
+        opacity: 0.8; 
+        background-color: variaveis.$primary-color; 
+        color: variaveis.$light-color; 
     }
 
-    &:hover{
-        background-color: variaveis.$corBotaesDois;
+    // Ajustes para botões primários
+    &--primary {
+        background-color: variaveis.$primary-color;
+        color: variaveis.$light-color;
+
+        &:hover {
+            background-color: variaveis.$primary-color; // Fundo não muda
+            color: variaveis.$light-color; // Cor do texto no hover
+        }
+    }
+
+    // Botão de contorno
+    &--outline {
+        background-color: transparent;
+        border: 2px solid variaveis.$primary-color;
+        color: variaveis.$primary-color;
+
+        &:hover {
+            background-color: variaveis.$primary-color;
+            color: variaveis.$light-color;
+        }
+    }
+
+    @media (max-width: 768px) {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+// Estilos de hero section (ajustes)
+.hero {
+    padding-top: 64px;
+    padding-bottom: 100px;
+    background-image: url("https://cdn.pixabay.com/photo/2016/11/29/13/20/balloons-1869790_1280.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    text-align: center;
+    background-color: transparent;
+
+    .container {
+        position: relative;
+        z-index: 1; // Garantir que o conteúdo fique sobre a camada
+    }
+
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: '';
+        z-index: 0; // Colocar abaixo do conteúdo
+    }
+
+    .hero__text {
+        margin-top: 64px;
+        margin-bottom: 64px;
+        font-size: 40px;
+        line-height: 56px;
+        font-weight: 800;
+        color: variaveis.$light-color;
+        background-color: variaveis.$dark-color;
+        z-index: 1;
+
+        @media (max-width: 768px) {
+            font-size: 32px;
+            line-height: 40px;
+        }
+
+        @media (max-width: 640px) {
+            font-size: 28px;
+            line-height: 36px;
+        }
+    }
+
+    .hero__logo {
+        max-width: 200px;
+        height: auto;
+        margin-bottom: 20px;
+
+        @media (max-width: 768px) {
+            max-width: 150px;
+        }
+
+        @media (max-width: 640px) {
+            max-width: 120px;
+        }
+    }
+}
+
+// Ajustes para a barra de informações
+.infos-bar {
+    margin-top: 40px;
+
+    &__list {
+        list-style: none;
+        padding: 0;
+    }
+
+    &__item {
+        margin-bottom: 16px;
+        font-size: 18px;
+        color: variaveis.$dark-color;
+
+        b {
+            font-weight: bold;
+        }
+    }
+
+    &--theme {
+        background-color: variaveis.$background-color;
+        padding: 20px 0;
+        text-align: center;
+
+        .event__title {
+            font-size: 24px;
+            color: variaveis.$primary-color;
+        }
+
+        .event__description {
+            font-size: 18px;
+            color: variaveis.$dark-color;
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    body {
+        font-size: 14px;
     }
 }
